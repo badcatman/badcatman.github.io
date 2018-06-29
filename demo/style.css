@@ -173,15 +173,27 @@ hr {
   		font-size: 2.25rem;
   	}
   	.navbar-brand, .navbar-toggler {
-    font-size: 2.25rem;
+    	font-size: 4rem;
+	}
+	.navbar-nav {
+		font-size: 3rem;
+	}
+	.form-control, .btn-outline-success {
+		font-size: 2.5rem;
 	}
 	.progress-bar {
-    	font-size: 1.5rem;
+    	font-size: 2rem;
     }
     .progress {
-    	height: 2.25rem;
+    	height: 3rem;
     }
     h5 {
     	font-size: 2.25rem;
+    }
+    .btn-light, .btn-group {
+    	width: 100%;
+    }
+    .buttongroup {
+    	width: 33%;
     }
 }
