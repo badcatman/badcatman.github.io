@@ -83,6 +83,41 @@ hr {
     margin-left: 0.75rem;
 }
 
+.progress {
+	height: 25px;
+}
+
+
+
+
+@media all and (max-width: 1200px) {
+  	.btn-group{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .progress-bar {
+    	font-size: 0.65rem;
+    }
+    .share {
+    	display: block;
+    	margin-left: 0px!important;
+    }
+}
+
+@media all and (max-width: 992px) {
+  	.btn-group{
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .progress-bar {
+    	font-size: 0.75rem;
+    }
+    .share {
+    	display: inline-block;
+
+    }
+}
+
 @media all and (max-width: 992px) {
     .main_content {
     	order: 1; 
@@ -131,33 +166,16 @@ hr {
   	i.h5 {
   		font-size: 2.25rem;
   	}
-}
-
-
-@media all and (max-width: 1200px) {
-  	.btn-group{
-        flex-direction: column;
-        justify-content: flex-start;
+  	.navbar-brand, .navbar-toggler {
+    font-size: 2.25rem;
+	}
+	.progress-bar {
+    	font-size: 1.5rem;
     }
-    .progress-bar {
-    	font-size: 0.65rem;
+    .progress {
+    	height: 2.25rem;
     }
-    .share {
-    	display: block;
-    	margin-left: 0px!important;
-    }
-}
-
-@media all and (max-width: 992px) {
-  	.btn-group{
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-    .progress-bar {
-    	font-size: 1rem;
-    }
-    .share {
-    	display: inline-block;
-
+    h5 {
+    	font-size: 2.25rem;
     }
 }
