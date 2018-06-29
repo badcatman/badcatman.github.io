@@ -96,7 +96,10 @@ hr {
   		order: 3; 
   		justify-content: center;
   	}
-	body {
+}
+
+@media handheld and (max-width: 992px) {
+  	body {
   		font-size: 2rem;
   	}
 }
@@ -115,9 +118,6 @@ hr {
   	.sidebar2 {
   		order: 3; 
   		justify-content: center;
-  	}
-  	body {
-  		font-size: 2rem;
   	}
 }
 
