@@ -100,7 +100,7 @@ hr {
 
 
 
-@media handheld and (max-width: 768px) {
+@media all and (max-width: 768px) {
     .main_content {
     	order: 1; 
     	justify-content: center;
