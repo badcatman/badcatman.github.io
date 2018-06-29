@@ -196,4 +196,7 @@ hr {
     .buttongroup {
     	width: 33%;
     }
+    .dropdown-menu {
+    	font-size: 3rem;
+    }
 }
