@@ -96,11 +96,29 @@ hr {
   		order: 3; 
   		justify-content: center;
   	}
+  	body {
+  		font-size: 2rem;
+  	}
+  	.btn {
+  		font-size: 2rem;
+  	}
+  	.btn-sm {
+  		font-size: 1.5rem;
+  	}
+  	.form-control {
+  		font-size: 2rem;
+  	}
+  	p.h3 {
+  		font-size: 2.75rem;
+  	}
+  	i.h5 {
+  		font-size: 2.25rem;
+  	}
 }
 
 
 
-@media all and (max-width: 576px) {
+@media handheld and (max-width: 992px) {
     .main_content {
     	order: 1; 
     	justify-content: center;
