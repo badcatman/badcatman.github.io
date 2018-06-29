@@ -116,6 +116,9 @@ hr {
     	display: inline-block;
 
     }
+    .progress {
+    	height: 1.25rem;
+    }
 }
 
 @media all and (max-width: 992px) {
