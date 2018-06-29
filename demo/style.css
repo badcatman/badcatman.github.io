@@ -1,0 +1,147 @@
+.container {
+	margin-top: 20px;
+}
+
+.tag {
+	padding: 0px 5px;
+}
+
+.links {
+	align-content: left;
+}
+
+.tags {
+	align-self: right;
+}
+
+.main_content {
+	padding-right: 15px;
+    padding-left: 15px;
+}
+
+.container {
+    max-width: 1300px;
+}
+
+.tags {
+	text-align: right;
+}
+hr {
+	margin-top: 1.5rem;
+}
+.h1 {
+	margin-top: 2rem;
+}
+
+.list-group, card {
+	margin-bottom: 1rem;
+}
+
+.progress{
+	    margin-bottom: 1rem;
+}
+
+.card {
+	margin-bottom: 1rem;
+}
+
+.fas {
+	padding-right: 5px;
+}
+.fa-globe-americas, .logo {
+	    color: #6c757d;
+}
+
+.btn-outline-success {
+    color: #6c757d;
+    background-color: white;
+    background-image: none;
+    border-color: white;
+}
+
+.btn-outline-success:hover {
+    color: #6c757d;
+    background-color: white;
+    background-image: none;
+    border-color: white;
+}
+
+.list-group-item.active {
+    z-index: 2;
+    color: #343a40;
+    background-color: rgba(0,0,0,.03);
+    border-color: rgba(0,0,0,.125);
+}
+
+.btn-light, .buttongroup {
+    color: #212529;
+    background-color: white;
+    border-color: rgba(0,0,0,.125);
+}
+
+.card-link+.card-link {
+    margin-left: 0.75rem;
+}
+
+@media all and (max-width: 992px) {
+    .main_content {
+    	order: 1; 
+    	justify-content: center;
+  	}
+  	.sidebar {
+  		order: 2;
+  		justify-content: center;
+  	}
+  	.sidebar2 {
+  		order: 3; 
+  		justify-content: center;
+  	}
+}
+
+
+
+@media all and (max-width: 576px) {
+    .main_content {
+    	order: 1; 
+    	justify-content: center;
+  	}
+  	.sidebar {
+  		order: 2;
+  		justify-content: center;
+  	}
+  	.sidebar2 {
+  		order: 3; 
+  		justify-content: center;
+  	}
+  	body {
+  		font-size: 2rem;
+  	}
+}
+
+@media all and (max-width: 1200px) {
+  	.btn-group{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .progress-bar {
+    	font-size: 0.65rem;
+    }
+    .share {
+    	display: block;
+    	margin-left: 0px!important;
+    }
+}
+
+@media all and (max-width: 992px) {
+  	.btn-group{
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .progress-bar {
+    	font-size: 1rem;
+    }
+    .share {
+    	display: inline-block;
+
+    }
+}
