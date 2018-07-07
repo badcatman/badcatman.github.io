@@ -583,10 +583,10 @@
 	position: absolute;
 	background-image: url(../images/text_area.png);
 	z-index: 10;
-	top: 148px;
-	left: 5px;
-	width: 300px;
-	height: 210px;
+	top: 35.5%;
+	margin: 0 1.5%;
+	width: 80%;
+	height: 50%;
 	padding: 53px 0 0 49px;
 	cursor: default;
 }
@@ -955,10 +955,189 @@
 	.what_text {
 		padding: 12px 0 27px 0;
 	}
+	.text_area {
+		padding: 40px 0 0 40px;
+		height: 47%;
+	}
+}
+@media all and (max-width: 1150px) {
+	.text_area {
+		padding: 30px 0 0 30px;
+		height: 40%;
+		width: 75%;
+	}
+	.text_area .name_text {
+		display: none;
+	}
 }
 
 @media all and (max-width: 920px) {
 	.says_text {
 		padding: 20px 20px 20px 20px;
+	}
+}
+
+@media all and (max-width: 920px) {
+	.team, .two_rows {
+		display: flex;
+		width: 100%;
+	}
+	.team1, .team2, .first_row, .second_row {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+	}
+	.team1 .four.columns, .first_row .four.columns {
+	width: 97.36666667%;
+	}
+	.team2 .four.columns, .second_row .four.columns {
+		width: 97.36666667%;
+	}
+	.team_image2, .work_image2 {
+		margin: 0;
+	}
+	.text_area {
+		padding: 40px 0 0 40px;
+		height: 47%;
+		width: 80%;
+	}
+	.text_area .name_text {
+		display: block;
+	}	
+
+}
+@media all and (max-width: 780px) {
+	.text_area {
+		padding: 30px 0 0 30px;
+		height: 40%;
+		width: 75%;
+	}
+	.text_area .name_text {
+		display: none;
+	}
+	.career_columns, .what_columns {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+	}
+	.career_columns .career_img, .career_columns .career_text {
+		width: 100%;
+	}
+	.what_columns .what_img, .what_columns .what_text {
+		width: 100%!important;
+	}
+	.contacts {
+		width: 100%;
+		flex-direction: column;
+	}
+	.contacts .left_contact, .contacts .right_contact {
+		width: 100%!important;
+		margin-left: 0!important;
+	}
+	.contacts .right_contact {
+		margin-top: 2%;
+	}
+}
+
+/*///////////////////////////////////////////////////*/
+@media all and (max-device-width: 1280px) {
+	.bac_columns, .bac_column {
+		display: none;
+	}
+	.about_img, .what_say_img {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.about_img img, .what_say_img  img{
+		width: 100%;
+		max-width: 299px;
+		height: 100%;
+
+	}
+	.what_text {
+		padding: 12px 0 27px 0;
+	}
+	.text_area {
+		padding: 40px 0 0 40px;
+		height: 47%;
+	}
+}
+@media all and (max-device-width: 1150px) {
+	.text_area {
+		padding: 30px 0 0 30px;
+		height: 40%;
+		width: 75%;
+	}
+	.text_area .name_text {
+		display: none;
+	}
+}
+
+@media all and (max-device-width: 920px) {
+	.says_text {
+		padding: 20px 20px 20px 20px;
+	}
+}
+
+@media all and (max-device-width: 920px) {
+	.team, .two_rows {
+		display: flex;
+		width: 100%;
+	}
+	.team1, .team2, .first_row, .second_row {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+	}
+	.team1 .four.columns, .first_row .four.columns {
+	width: 97.36666667%;
+	}
+	.team2 .four.columns, .second_row .four.columns {
+		width: 97.36666667%;
+	}
+	.team_image2, .work_image2 {
+		margin: 0;
+	}
+	.text_area {
+		padding: 40px 0 0 40px;
+		height: 47%;
+		width: 80%;
+	}
+	.text_area .name_text {
+		display: block;
+	}	
+
+}
+@media all and (max-device-width: 780px) {
+	.text_area {
+		padding: 30px 0 0 30px;
+		height: 40%;
+		width: 75%;
+	}
+	/*.text_area .name_text {
+		display: none;
+	}*/
+	.career_columns, .what_columns {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+	}
+	.career_columns .career_img, .career_columns .career_text {
+		width: 100%;
+	}
+	.what_columns .what_img, .what_columns .what_text {
+		width: 100%!important;
+	}
+	.contacts {
+		width: 100%;
+		flex-direction: column;
+	}
+	.contacts .left_contact, .contacts .right_contact {
+		width: 100%!important;
+		margin-left: 0!important;
+	}
+	.contacts .right_contact {
+		margin-top: 2%;
 	}
 }
