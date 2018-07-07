@@ -1128,6 +1128,7 @@
 	}
 	.what_columns .what_img, .what_columns .what_text {
 		width: 100%!important;
+		margin-left: 0!important;
 	}
 	.contacts {
 		width: 100%;
