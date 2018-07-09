@@ -937,7 +937,7 @@
 	margin: 0 1.3%;
 }
 .active {
-	background: #71f6eb;
+	background: #71f6eb!important;
 }
 input::-moz-placeholder { color: white; }
 input::-webkit-input-placeholder { color: white; }
