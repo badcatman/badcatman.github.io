@@ -788,7 +788,6 @@
 }
 .contact {
 	background-image: url(../images/background.jpg);
-	padding-bottom: 113px;
 }
 
 .contacts {
@@ -825,7 +824,7 @@
 
 .textarea{
 	resize: none;
-	height: 90px!important;
+	height: 105px!important;
 	overflow: hidden;
 }
 .hr {
@@ -835,7 +834,7 @@
 }
 
 #last_hr {
-	margin: 16px 10px 15px 6px;
+	margin: 1px 10px 15px 6px;
 }
 #footer_btn {
 	margin: 10px 0 0 6px;
@@ -867,6 +866,7 @@
 
 .contacts {
 	display: flex;
+	padding-bottom: 113px;
 }
 
 .footer {
@@ -936,6 +936,13 @@
 .team_image2 {
 	margin: 0 1.3%;
 }
+.active {
+	background: #71f6eb;
+}
+input::-moz-placeholder { color: white; }
+input::-webkit-input-placeholder { color: white; }
+textarea::-moz-placeholder { color: white; }
+textarea::-webkit-input-placeholder { color: white; }
 
 @media all and (max-width: 1280px) {
 	.bac_columns, .bac_column {
