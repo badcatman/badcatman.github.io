@@ -7,6 +7,7 @@ class TodoList {
  		this.input = document.querySelector('#task');
  		this.items = [{title: '123123', done: false, date: new Date()}];
 		this.addHandler();
+		this.saveChanges();
 	}
 	addHandler () {
 		const that = this;
@@ -17,11 +18,21 @@ class TodoList {
 	addTodo() {
 	    this.items.push(new Todo(this.input.value));
 	    this.input.value = '';
+	    this.saveChanges();
+	}
+	saveChanges() {
+		localStorage.setItem("items", JSON.stringify(this.items));
+		this.storedItems = JSON.parse(localStorage.getItem("items"));
+		console.log(this.storedItems);
 	}
 
 
 }
-
+window.onunload = function() {
+    localStorage.setItem("items", JSON.stringify(this.items));
+	// this.storedItems = JSON.parse(localStorage.getItem("items"));
+	// console.log(this.storedItems);
+}
 class Todo {
 	constructor (title) {
 	  this.title = title;
