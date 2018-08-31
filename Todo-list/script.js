@@ -230,4 +230,4 @@ class Todo {
 	}
 }
 const todolist = new TodoList();
-console.log(1);
+console.log(2);
