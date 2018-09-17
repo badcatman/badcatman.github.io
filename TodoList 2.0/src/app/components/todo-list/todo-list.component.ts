@@ -19,9 +19,11 @@ export class AppTodoListComponent implements OnInit {
     constructor(private share: ShareService) {
         AppFormComponent.onSubmit.subscribe((data: ItemIterface) => {
             // this.todoList = data;
-            this.todoList.push(data);
-            this.share.addData(data).subscribe(todo => todo);
-            console.log('1');
+
+            this.share.addData(data).subscribe(todo => this.todoList.push(todo));
+
+            this.share.getData().subscribe((list: ItemIterface[]) => this.todoList = list);
+            console.log(this.todoList);
         });
     }
 
@@ -31,6 +33,7 @@ export class AppTodoListComponent implements OnInit {
 
     private render() {
         this.share.getData().subscribe((data: ItemIterface[]) => this.todoList = data);
+        console.log(this.todoList);
     }
 
     private delete($event) {
@@ -38,15 +41,18 @@ export class AppTodoListComponent implements OnInit {
 
         this.todoList.splice(index, 1);
         this.share.deleteData($event).subscribe((data) => data);
+        console.log(this.todoList);
     }
 
     private editTodo($event) {
         $event.todo.title = $event.newTitle;
         this.share.putData($event.todo).subscribe((data) => data);
+        console.log(this.todoList);
     }
 
     private toggle($event) {
         $event.todo.done = $event.done;
         this.share.putData($event.todo).subscribe((data) => data);
+        console.log(this.todoList);
     }
 }

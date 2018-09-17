@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class ShareService {
     // tslint:disable-next-line:no-inferrable-types
-    apiUrl: string = 'http://5b86b98535589600143c12ef.mockapi.io/obj';
+    apiUrl: string = 'http://5b9faffff5036f00142e4a61.mockapi.io/list';
 
     constructor(private http: HttpClient) { }
   // tslint:disable-next-line:no-inferrable-types
