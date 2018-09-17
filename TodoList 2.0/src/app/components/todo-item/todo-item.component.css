@@ -1,0 +1,103 @@
+.close {
+    position: absolute;
+    color: #002C19;
+    right: 0;
+    top: 0;
+    padding: 13px 16px 13px 16px;
+    opacity: 1;
+    text-shadow: none;
+    border-radius: 0 10px 10px 0; 
+}
+
+.close:hover, .edit:hover {
+    background-color: #E07F00;
+    color: white;
+    opacity: 1;
+}
+
+.edit {
+	position: absolute;
+	color: #002C19;
+    right: 57px;
+    top: 0;
+    padding: 5px 16px 10px 16px;
+    font-size: 1.5rem;
+    opacity: 1;
+}
+
+li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #36D792;
+    font-size: 18px;
+    transition: 0.2s;
+    user-select: none;
+    list-style-type: none;
+    margin: 10px 0;
+    border-radius: 10px;
+    display: flex;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+li:nth-child(odd) {
+    background: #7BE9B9;
+}
+
+li:hover {
+    background: #299F6C;
+}
+
+li.checked {
+    background: #007241;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 4px 4px 0;
+    top: 13px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 20px;
+    width: 10px;
+}
+.input {
+    margin-right: 20px;
+    border: none;
+    border-radius: 10px;
+    flex-grow: 6;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #F5FFFE;
+    max-width: 413px;
+
+}
+
+.button {
+    padding: 10px;
+    border-radius: 10px;
+    background: #299F6C;
+    color: #C9FFF4;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    max-width: 111px;
+}
+
+.button:hover {
+    background-color: #218359;
+}
+
+.edit-block {
+    display: flex;
+    justify-content: space-between;
+    width: 98.5%;
+}

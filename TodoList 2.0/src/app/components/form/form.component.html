@@ -1,0 +1,8 @@
+<div class="header">
+    <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+        <input name="todo" id="task" class="input form-control" placeholder="Write here" formControlName="todo">
+        <button class="button" [disabled]="myForm.invalid" type="submit">
+            Add
+        </button>
+    </form>
+</div>
