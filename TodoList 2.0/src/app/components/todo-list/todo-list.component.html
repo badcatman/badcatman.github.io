@@ -1,5 +1,10 @@
 <div class="list">
         <ul class="listUl" >
-            <todo-item *ngFor='let todo of todoList' [todoItem]='todo' (delete)="delete($event)" (editTodo)="editTodo($event)" (toggle)="toggle($event)"></todo-item>
+            <todo-item *ngFor='let todo of todoList' 
+                        [todoItem]='todo' 
+                        (delete)="delete($event)" 
+                        (editTodo)="editTodo($event)" 
+                        (toggle)="toggle($event)">
+            </todo-item>
         </ul>
 </div>

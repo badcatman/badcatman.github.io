@@ -1,17 +1,17 @@
 <li [class.checked] ='todoItem.done' (click)="onToggle($event, todoItem)">
     <div *ngIf='!edited; else editeForm'>
         <span>{{ todoItem.title }}</span>
-        <span class="edit" (click)="onEdit(todoItem);">
+        <span (click)="onEdit(todoItem);" class="edit">
             <i class="fas fa-edit"></i>
         </span>
-        <span class="close" (click)="onDelete(todoItem);">
+        <span (click)="onDelete(todoItem);" class="close">
             <i class="fas fa-window-close"></i>
         </span>
     </div>
     <ng-template #editeForm>
-        <form [formGroup]="editForm" novalidate class="edit-block" (ngSubmit)="onEditTodo(todoItem)">
-            <input name="editInput" class="input form-control" formControlName="editInput">
-            <button class="button" type="submit" [disabled]="editForm.invalid">Edit</button>
+        <form [formGroup]="editForm" novalidate (ngSubmit)="onSaveTodo(todoItem)" class="edit-block">
+            <input formControlName="editInput" name="editInput" class="input form-control">
+            <button [disabled]="editForm.invalid" class="button" type="submit">Edit</button>
         </form>
     </ng-template>
 </li>

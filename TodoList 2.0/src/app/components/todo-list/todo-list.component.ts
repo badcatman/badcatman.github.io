@@ -1,7 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import { ShareService } from '../../services/share.service';
+import { SubmitService } from '../../services/subscribe.subject.service';
 import { ItemIterface } from '../../interfaces/item.interface';
 import { AppFormComponent } from '../../components/./form/form.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,45 +16,49 @@ import { AppFormComponent } from '../../components/./form/form.component';
 
 
 export class AppTodoListComponent implements OnInit {
-    todoList: ItemIterface[];
+    public todoList: ItemIterface[];
+    public todoList$: Observable<ItemIterface[]>;
 
-    constructor(private share: ShareService) {
-        AppFormComponent.onSubmit.subscribe((data: ItemIterface) => {
-            // this.todoList = data;
+    constructor(private share: ShareService, private sub: SubmitService) {
+        // AppFormComponent.onSubmit$.subscribe((item: ItemIterface) => {
+        //     // this.todoList = data;
+        //     // this.todoList.push(item);
+        //     this.share.addData(item).subscribe(response => this.todoList.push(response));
+        //     // this.share.addData(item).subscribe(todo => console.log(todo));
+        //     // this.share.getData().subscribe((list: ItemIterface[]) => this.todoList = list);
+        //     console.log(this.todoList);
+        // });
 
-            this.share.addData(data).subscribe(todo => this.todoList.push(todo));
-
-            this.share.getData().subscribe((list: ItemIterface[]) => this.todoList = list);
-            console.log(this.todoList);
+        // this.sub.onSubscribe();
+        this.sub.submited$.subscribe((item: ItemIterface) => {
+            this.share.addData(item).subscribe(response => this.todoList.push(response));
         });
+
+        // this.todoList.push(item);
+        // this.sub.onSubscribe().
     }
 
     ngOnInit() {
-        this.render();
-    }
-
-    private render() {
+        // this.share.getData().subscribe((data: ItemIterface[]) => this.todoList = data);
+        this.todoList$ = this.share.getData();
         this.share.getData().subscribe((data: ItemIterface[]) => this.todoList = data);
-        console.log(this.todoList);
+
     }
 
     private delete($event) {
         const index = this.todoList.indexOf($event);
 
         this.todoList.splice(index, 1);
-        this.share.deleteData($event).subscribe((data) => data);
-        console.log(this.todoList);
+        this.share.deleteData($event).subscribe((data) => console.log(data));
     }
 
     private editTodo($event) {
         $event.todo.title = $event.newTitle;
-        this.share.putData($event.todo).subscribe((data) => data);
-        console.log(this.todoList);
+        this.share.putData($event.todo).subscribe((data) => console.log(data));
     }
 
     private toggle($event) {
         $event.todo.done = $event.done;
-        this.share.putData($event.todo).subscribe((data) => data);
-        console.log(this.todoList);
+        this.share.putData($event.todo).subscribe((data) => console.log(data));
     }
 }

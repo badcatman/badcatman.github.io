@@ -7,6 +7,7 @@ import { AppTodoListComponent } from './components/./todo-list/./todo-list.compo
 import { AppTodoItemComponent } from './components/./todo-item/todo-item.component';
 import { ShareService } from './services/share.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SubmitService } from './services/subscribe.subject.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule
   ],
-  providers: [ShareService],
+  providers: [ShareService, SubmitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

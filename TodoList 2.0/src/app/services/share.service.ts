@@ -2,7 +2,6 @@ import { ItemIterface } from './../interfaces/item.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
@@ -14,8 +13,11 @@ const httpOptions = {
 
 @Injectable()
 export class ShareService {
+
     // tslint:disable-next-line:no-inferrable-types
-    apiUrl: string = 'http://5b9faffff5036f00142e4a61.mockapi.io/list';
+    private apiUrl: string = 'http://5b9faffff5036f00142e4a61.mockapi.io/list';
+
+
 
     constructor(private http: HttpClient) { }
   // tslint:disable-next-line:no-inferrable-types
@@ -23,8 +25,7 @@ export class ShareService {
 
     public getData(): Observable<ItemIterface[]> {
         // return this.todoList;
-        // return this.http.get(this.apiUrl).pipe(map((res: any) => res.json()));
-        return this.http.get(this.apiUrl).pipe(map((res: ItemIterface[]) => res));
+        return this.http.get<ItemIterface[]>(this.apiUrl);
     }
 
     public addData(item: ItemIterface) {
@@ -35,15 +36,11 @@ export class ShareService {
     }
 
     public putData(item: ItemIterface) {
-        const url = `${this.apiUrl}/${item.id}`;
-
-        return this.http.put<ItemIterface>(url, item, httpOptions);
+        return this.http.put<ItemIterface>(`${this.apiUrl}/${item.id}`, item, httpOptions);
     }
 
     public deleteData(item: ItemIterface) {
-        const url = `${this.apiUrl}/${item.id}`;
-
-        return this.http.delete<ItemIterface>(url, httpOptions);
+        return this.http.delete<ItemIterface>(`${this.apiUrl}/${item.id}`, httpOptions);
     }
 }
-// ${item.itemId}
+
