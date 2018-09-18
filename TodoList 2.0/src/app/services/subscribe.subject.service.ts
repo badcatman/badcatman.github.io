@@ -8,7 +8,6 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SubmitService {
     private submite$ = new Subject();
-    submited$ = this.submite$.asObservable();
     public item: ItemIterface;
     constructor(private share: ShareService) { }
   // tslint:disable-next-line:no-inferrable-types
@@ -18,14 +17,16 @@ export class SubmitService {
         this.submite$.next(item);
     }
 
-    public onSubscribe() {
-        return this.submite$.subscribe((data: ItemIterface) => {
-            this.share.addData(data).subscribe((response: ItemIterface) => console.log(response));
-            this.share.getData().subscribe((list: ItemIterface[]) => this.todoList = list);
-        });
-
-        // .subscribe((response: ItemIterface) => this.item = response);
-        // return subscr;
-
+    public getData() {
+        return this.submite$;
     }
+
+    // public onSubscribe() {
+    //     return this.submite$.subscribe((data: ItemIterface) => {
+    //         this.share.addData(data).subscribe((response: ItemIterface) => console.log(response));
+    //         this.share.getData().subscribe((list: ItemIterface[]) => this.todoList = list);
+    //     });
+    //     // .subscribe((response: ItemIterface) => this.item = response);
+    //     // return subscr;
+    // }
 }

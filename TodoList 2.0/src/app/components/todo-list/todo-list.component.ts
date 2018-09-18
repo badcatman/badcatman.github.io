@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { ShareService } from '../../services/share.service';
 import { SubmitService } from '../../services/subscribe.subject.service';
 import { ItemIterface } from '../../interfaces/item.interface';
-import { AppFormComponent } from '../../components/./form/form.component';
 import { Observable } from 'rxjs';
 
 
@@ -30,7 +29,10 @@ export class AppTodoListComponent implements OnInit {
         // });
 
         // this.sub.onSubscribe();
-        this.sub.submited$.subscribe((item: ItemIterface) => {
+        // this.sub.submited$.subscribe((item: ItemIterface) => {
+        //     this.share.addData(item).subscribe(response => this.todoList.push(response));
+        // });
+        this.sub.getData().subscribe((item: ItemIterface) => {
             this.share.addData(item).subscribe(response => this.todoList.push(response));
         });
 
@@ -40,7 +42,7 @@ export class AppTodoListComponent implements OnInit {
 
     ngOnInit() {
         // this.share.getData().subscribe((data: ItemIterface[]) => this.todoList = data);
-        this.todoList$ = this.share.getData();
+        // this.todoList$ = this.share.getData();
         this.share.getData().subscribe((data: ItemIterface[]) => this.todoList = data);
 
     }
