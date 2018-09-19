@@ -20,7 +20,7 @@ export class SubmitService {
     public getData() {
         return this.submite$;
     }
-
+}
     // public onSubscribe() {
     //     return this.submite$.subscribe((data: ItemIterface) => {
     //         this.share.addData(data).subscribe((response: ItemIterface) => console.log(response));
@@ -29,4 +29,4 @@ export class SubmitService {
     //     // .subscribe((response: ItemIterface) => this.item = response);
     //     // return subscr;
     // }
-}
+
