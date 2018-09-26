@@ -1,0 +1,15 @@
+.list {
+    width: 100%;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+.listUl {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.book-item {
+    padding: 0px;
+}

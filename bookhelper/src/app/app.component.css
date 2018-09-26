@@ -1,0 +1,26 @@
+body {
+	margin: 0;
+	background-color: white;
+}
+.hide {
+    display: none;
+}
+.main {
+	background-color: #F5FFFE;
+	margin-top: 20px;
+	border-radius: 10px;
+	padding: 10px 18px;
+}
+
+.head {
+	background-color: #1D7373;
+}
+.nav { 
+	clear: both;
+}
+a {
+	float: left;
+}
+.active a { 
+	color: red;
+}

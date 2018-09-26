@@ -1,0 +1,35 @@
+<header class="head">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>Hello, it's a BookHelper</h1>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row justify-content-center">
+    <main class="main col-lg-10 col-md-11 col-sm-11">
+            <nav>
+                <ul class="nav">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="">Main page</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/search">Search book</a>
+                    </li>
+                </ul>
+                <router-outlet></router-outlet>
+            </nav>
+            <router-outlet></router-outlet>
+      <!-- <app-searchform></app-searchform>
+      <app-choice-book-list></app-choice-book-list> -->
+      <!-- <div class="header">
+        <input type="text" id="task" class="input" placeholder="Write here">
+        <span class="button">Add</span>
+      </div>
+      <div class="list">
+        <ul class="listUl">
+        </ul>
+      </div> -->
+    </main>
+  </div>
+</div>

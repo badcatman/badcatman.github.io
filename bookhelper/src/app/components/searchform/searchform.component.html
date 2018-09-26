@@ -1,0 +1,8 @@
+<div class="header">
+  <form [formGroup]="searchForm" novalidate (ngSubmit)="searchRecommendation()">
+      <input formControlName="basicBook" name="basicBook" id="task" class="input form-control" placeholder="Write here your lastread book">
+      <button class="button" [disabled]="searchForm.invalid" type="submit">
+          Search
+      </button>
+  </form>
+</div>
