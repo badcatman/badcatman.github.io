@@ -1,6 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
-import { ShareDataService } from '../../services/sharedata.service';
+import { BookDataService } from '../../services/book-data.service';
+import { BookInterface } from '../../interfaces/book.interface';
 
 @Component({
   selector: 'app-choice-book-item',
@@ -8,12 +9,12 @@ import { ShareDataService } from '../../services/sharedata.service';
   styleUrls: ['./choice-book-item.component.css']
 })
 export class ChoiceBookItemComponent implements OnInit {
-  @Input() bookItem: object;
+  @Input() bookItem: BookInterface;
   public src: string;
   public img: number;
   public id: string;
 
-  constructor(private sub: ShareDataService) { }
+  constructor(private bookData: BookDataService, private router: Router) { }
 
   ngOnInit() {
     this.img = this.bookItem['cover_i'];
@@ -23,7 +24,8 @@ export class ChoiceBookItemComponent implements OnInit {
     console.log(this.bookItem);
   }
 
-  public sendWork(work: object) {
-    this.sub.onSendWork(work);
+  public sendWork(book: BookInterface) {
+    this.bookData.onSendWork(book);
+    // this.router.navigate([`book/:${this.id}`]);
   }
 }

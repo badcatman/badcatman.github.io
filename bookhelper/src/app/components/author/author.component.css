@@ -1,0 +1,12 @@
+.author {
+    display: flex;
+    border: 3px solid black;
+    margin: 10px;
+}
+.about {
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.img {
+    max-height: 250px;
+}

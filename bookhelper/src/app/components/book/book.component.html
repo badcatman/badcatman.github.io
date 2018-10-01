@@ -1,0 +1,26 @@
+<div class="book">
+    <img *ngIf="book.cover_i; else noneImg" src={{src}} class="img" alt="">
+    <ng-template #noneImg>
+        <img class="img" src="https://eurekabooks.com.au/pics/7676.jpg" alt="">
+    </ng-template>
+    <div class="about">
+        <p class="book-title">{{work?.title}}</p>
+        <a [routerLink]="['author', id_author]">
+            <p class="book-authors">{{book.author_name}}</p>
+        </a>
+        <p *ngIf="work?.description['value']; else descr;" class="description">{{work?.description['value']}}</p>
+        <ng-template *ngIf="work?.description; else noDescr" #descr>
+            <p class="author-biography">{{work?.description}}</p>
+        </ng-template>
+        <ng-template #noDescr>
+          <p class="author-biography">This book has no description, sorry :(</p>
+        </ng-template>
+    </div>
+    <button (click)='click()'>Add</button>
+</div>
+<!--<p class="subject">{{work?.subjects}}</p>-->
+  <ul *ngIf="done" class="subject">
+    <li *ngFor="let recommendation of recommendations">{{recommendation.title}}</li>
+  </ul>
+
+

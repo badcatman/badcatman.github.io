@@ -2,6 +2,7 @@
   import { SearchBookService } from '../../services/searchbook.service';
   import { ShareDataService } from '../../services/sharedata.service';
   import { Observable } from 'rxjs';
+  import { BookInterface } from '../../interfaces/book.interface';
 
   @Component({
     selector: 'app-choice-book-list',
@@ -9,17 +10,12 @@
     styleUrls: ['./choice-book-list.component.css']
   })
   export class ChoiceBookListComponent implements OnInit {
-    public books: object;
+    public books: [BookInterface];
 
-    constructor(private shareData: ShareDataService) {
-      // this.shareData.getData().subscribe((books) => {
-      //   this.books = books;
-      //   console.log(this.books);
-      // });
-    }
+    constructor(private shareData: ShareDataService) {}
 
     ngOnInit() {
-      this.shareData.getData().subscribe((books) => {
+      this.shareData.getData().subscribe((books: [BookInterface]) => {
         this.books = books;
         console.log(this.books);
       });
