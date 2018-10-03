@@ -42,15 +42,6 @@ export class SearchFormComponent implements OnInit {
           (error) => console.log(error));
     }
 
-    public showHint(state: boolean, event?) {
-      this.done = state;
-      console.log(event);
-    }
-
-    public stopBlur(event) {
-      event.preventDefault();
-    }
-
     public submit() {
       const title = this.searchForm.controls['basicBook'].value;
 
@@ -62,5 +53,14 @@ export class SearchFormComponent implements OnInit {
 
       this.searchForm.controls['basicBook'].setValue('');
       this.searchBook.searchBooks(title).subscribe((response) => this.books = response['docs']);
+    }
+
+    public showHint(state: boolean, event?) {
+      this.done = state;
+      console.log(event);
+    }
+
+    public stopBlur(event) {
+      event.preventDefault();
     }
 }
