@@ -9,6 +9,7 @@ import { BookInterface } from '../../interfaces/book.interface';
 import { SearchSubjectsInterface } from '../../interfaces/search-subjects.interface';
 import { SubjectsWorkInterface } from '../../interfaces/subjects-work.interface';
 import { SubjectInterface } from '../../interfaces/subject.interface';
+import { RecommendationInterface } from '../../interfaces/recommendation.interface';
 
 @Component({
   selector: 'app-book',
@@ -23,9 +24,8 @@ export class BookComponent implements OnInit, OnDestroy {
   public src: string;
   public subjects: string[];
   public id: string;
-  public done: false;
-  public genre: any;
-  public recommendations: any;
+  public done: boolean;
+  public recommendationList: RecommendationInterface[];
   public mainSubjects: string[] = [
     'History',
     'Biography',
@@ -45,8 +45,7 @@ export class BookComponent implements OnInit, OnDestroy {
     'Medicine',
     'Religion',
     'Children',
-    'Science fiction',
-    'Fiction'
+    'Science fiction'
   ];
   private subscription: Subscription;
 
@@ -55,6 +54,7 @@ export class BookComponent implements OnInit, OnDestroy {
               private search: SearchBookService) {}
 
   ngOnInit() {
+    this.done = false;
     // this.subscription = this.activateRoute.params.subscribe(params => this.id = params['id']);
     this.subscription = this.activateRoute.params
     .pipe(switchMap((params) => this.search.searchWork(params['id'])))
@@ -62,14 +62,13 @@ export class BookComponent implements OnInit, OnDestroy {
       this.work = work;
       this.subjects = this.work.subjects;
     });
+
     this.bookData.getWork().pipe(take(1)).subscribe((book: BookInterface ) => {
       this.book = book;
       console.log(this.book);
     });
-    console.log(this.genre);
     this.src = `https://covers.openlibrary.org/w/id/${this.book['cover_i']}-L.jpg`;
     this.id_author = this.book.author_key[0];
-    // this.id = this.work.key.slice(7);
   }
 
   click() {
@@ -87,33 +86,26 @@ export class BookComponent implements OnInit, OnDestroy {
     this.search.searchReferences(subj)
       .pipe(
         map((response: SubjectInterface) => response['works']),
-        map((response: SubjectsWorkInterface[]) => response.map(
-          (elem) => {
-            return {key: elem['key'], subject: elem['subject'], authors: elem['authors'], title: elem['title']};
-          })),
-        map((response) => response.map(
-          (elem) => {
+        map((response: SubjectsWorkInterface[]) => response.map((elem) => {
             const arr = elem['subject'].filter((item) =>  this.subjects.indexOf(item) >= 0 );
             return {key: elem['key'], subject: arr, rating: arr.length, authors: elem['authors'], title: elem['title']};
           })),
-        map((response) => response.map(
-          (item) => {
+        map((response: RecommendationInterface[]) => response.map((item) => {
             if (item['authors'][0]['key'] === this.work['authors'][0]['author']['key']) {
               item.rating += 30;
               console.log(item.rating);
             }
             return item;
-          }))
-      )
-      .subscribe((response) => {
-        const arr = this.sort(response);
-        this.recommendations = arr;
-        console.log(arr);
+          })))
+      .subscribe((response: RecommendationInterface[]) => {
+        this.recommendationList = this.sortRecommenadation(response);
+        console.log(this.recommendationList);
         this.done = true;
       });
   }
-  public sort(recommendationList: []) {
-    return recommendationList.sort((a: any, b: any) => {
+
+  public sortRecommenadation(list: Array<RecommendationInterface>) {
+    return list.sort((a: any, b: any) => {
       if (a['rating'] < b['rating']) {
         return 1;
       } else if (a['rating'] > b['rating']) {

@@ -1,6 +1,17 @@
 <div class="header">
-  <form [formGroup]="searchForm" novalidate (ngSubmit)="searchRecommendation()">
-      <input formControlName="basicBook" name="basicBook" id="task" class="input form-control" placeholder="Write here your lastread book">
+  <form [formGroup]="searchForm" novalidate (ngSubmit)="submit()">
+      <input formControlName="basicBook" (focus)="showHint(true)" (blur)="showHint(false, $event)"
+             name="basicBook" id="task" class="input form-control"
+             placeholder="Write here your lastread book" autocomplete="off">
+      <!--<div *ngIf="done" class="titles">-->
+        <!--<div *ngFor="let title of titles">{{title.title}}</div>-->
+      <!--</div>-->
+    <div *ngIf="done" (mousedown)="stopBlur($event)" class="titles" >
+      <div *ngFor="let title of titles" class="title" (click)="searchRecommendation(title.title)">
+        <span>{{title.title}}</span>
+        <span>Author - {{title.author_name}}</span>
+      </div>
+    </div>
       <button class="button" [disabled]="searchForm.invalid" type="submit">
           Search
       </button>

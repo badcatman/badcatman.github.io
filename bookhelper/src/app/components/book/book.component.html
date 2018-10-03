@@ -9,18 +9,19 @@
             <p class="book-authors">{{book.author_name}}</p>
         </a>
         <p *ngIf="work?.description['value']; else descr;" class="description">{{work?.description['value']}}</p>
-        <ng-template *ngIf="work?.description; else noDescr" #descr>
-            <p class="author-biography">{{work?.description}}</p>
+        <ng-template #descr>
+            <p class="description">{{work?.description}}</p>
         </ng-template>
-        <ng-template #noDescr>
-          <p class="author-biography">This book has no description, sorry :(</p>
-        </ng-template>
+      <!--*ngIf="work?.description; else noDescr;"-->
+        <!--<ng-template #noDescr>-->
+          <!--<p class="description">This book has no description, sorry :(</p>-->
+        <!--</ng-template>-->
     </div>
     <button (click)='click()'>Add</button>
 </div>
 <!--<p class="subject">{{work?.subjects}}</p>-->
   <ul *ngIf="done" class="subject">
-    <li *ngFor="let recommendation of recommendations">{{recommendation.title}}</li>
+    <li *ngFor="let recommendation of recommendationList">{{recommendation.title}}</li>
   </ul>
 
 

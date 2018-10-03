@@ -50,3 +50,24 @@ form {
 .button:hover {
     background-color: #218359;
 }
+
+.titles {
+  position: absolute;
+  list-style-type: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  left: 0px;
+  padding: 50px 0 0 70px;
+  max-width: 470px;
+}
+.title {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #F5FFFE;
+  border-radius: 5px;
+  border: 1px solid aliceblue;
+  padding: 10px;
+  cursor: pointer;
+}

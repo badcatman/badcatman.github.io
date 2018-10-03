@@ -8,6 +8,7 @@ import { AuthorInterface } from '../interfaces/author.interface';
 import { SearchTitleInterface } from '../interfaces/search.title.interface';
 import { SearchSubjectsInterface } from '../interfaces/search-subjects.interface';
 import { SubjectsWorkInterface } from '../interfaces/subjects-work.interface';
+import { SubjectInterface } from '../interfaces/subject.interface';
 
 
 const httpOptions = {
@@ -24,7 +25,7 @@ export class SearchBookService {
     public work$: Observable<WorkInterface>;
     public author$: Observable<AuthorInterface>;
     public subjects$: Observable<SearchSubjectsInterface[]>;
-    public  references$: Observable<SubjectsWorkInterface>;
+    public  references$: Observable<SubjectInterface>;
     // tslint:disable-next-line:no-inferrable-types
     private apiUrl: string = 'http://openlibrary.org';
 
@@ -53,18 +54,24 @@ export class SearchBookService {
       return this.author$;
     }
 
-    public getSubjects(id: string): Observable<SearchSubjectsInterface> {
+    public getSubjects(id: string): Observable<SearchSubjectsInterface[]> {
       const searchUrl = `query.json?type=/type/work&key=/works/${id}&subjects=`;
 
-      this.subjects$ = this.http.get<SearchSubjectsInterface>(`${this.apiUrl}/${searchUrl}`);
+      this.subjects$ = this.http.get<SearchSubjectsInterface[]>(`${this.apiUrl}/${searchUrl}`);
       return this.subjects$;
     }
 
-    public searchReferences(subject: string): Observable<SubjectsWorkInterface> {
-      const searchUrl = `subjects/${subject}.json?limit=500`;
+    public searchReferences(subject: string): Observable<SubjectInterface> {
+      const searchUrl = `subjects/${subject}.json?limit=100`;
       console.log(searchUrl);
 
-      this.references$ = this.http.get<SubjectsWorkInterface>(`${this.apiUrl}/${searchUrl}`);
+      this.references$ = this.http.get<SubjectInterface>(`${this.apiUrl}/${searchUrl}`);
       return this.references$;
+    }
+
+    public searchTitles(title: string): Observable<SearchTitleInterface> {
+      const searchUrl = `search.json?title=${title}&limit=3`;
+
+      return this.http.get<SearchTitleInterface>(`${this.apiUrl}/${searchUrl}`);
     }
 }
