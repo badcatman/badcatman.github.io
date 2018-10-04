@@ -11,5 +11,12 @@
       <ng-template #bio>
         <p class="author-biography">{{author?.bio}}</p>
       </ng-template>
-  </div> 
-</div>    
+  </div>
+</div>
+<div>
+  <ul>
+    <li *ngFor="let work of works">
+      <a [routerLink]="['book', work.key.slice(7)]">{{work.title}}</a>
+    </li>
+  </ul>
+</div>

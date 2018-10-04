@@ -3,6 +3,9 @@ import { ActivatedRoute} from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SearchBookService } from '../../services/searchbook.service';
 import { AuthorInterface } from '../../interfaces/author.interface';
+import { SearchAuthorsWorksInterface } from '../../interfaces/search.authors.works.interface';
+import { AuthorsWorkInterface } from '../../interfaces/authors.work.interface';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-author',
@@ -12,6 +15,7 @@ import { AuthorInterface } from '../../interfaces/author.interface';
 export class AuthorComponent implements OnInit, OnDestroy {
   public id_author: string;
   public author: AuthorInterface;
+  public works: AuthorsWorkInterface[];
   public src: string;
   private subscription: Subscription;
 
@@ -23,6 +27,27 @@ export class AuthorComponent implements OnInit, OnDestroy {
       this.author = author;
       this.src = `https://covers.openlibrary.org/a/id/${this.author.photos[0]}-L.jpg`;
       console.log(this.author);
+      this.getWorks();
+    });
+  }
+
+  public getWorks () {
+    this.search.searchAuthorWorks(this.id_author).pipe(
+      map((response: SearchAuthorsWorksInterface) => response['entries']),
+      map((response: AuthorsWorkInterface[]) => response.filter((item) =>  item['subjects']))
+    )
+      .subscribe((response: AuthorsWorkInterface[]) => this.works = this.sortWorks(response));
+  }
+
+  public sortWorks(list: AuthorsWorkInterface[]) {
+    return list.sort((a: any, b: any) => {
+      if (a['subjects'].length < b['subjects'].length) {
+        return 1;
+      } else if (a['subjects'].length > b['subjects'].length) {
+        return -1;
+      } else {
+        return 0;
+      }
     });
   }
 

@@ -1,12 +1,13 @@
 <div class="book">
-    <img *ngIf="book.cover_i; else noneImg" src={{src}} class="img" alt="">
+    <img *ngIf="cover; else noneImg" src="https://covers.openlibrary.org/w/id/{{cover}}-L.jpg"
+         class="img" alt="">
     <ng-template #noneImg>
         <img class="img" src="https://eurekabooks.com.au/pics/7676.jpg" alt="">
     </ng-template>
     <div class="about">
         <p class="book-title">{{work?.title}}</p>
         <a [routerLink]="['author', id_author]">
-            <p class="book-authors">{{book.author_name}}</p>
+            <p class="book-authors">{{author?.name}}</p>
         </a>
         <p *ngIf="work?.description['value']; else descr;" class="description">{{work?.description['value']}}</p>
         <ng-template #descr>
@@ -21,7 +22,9 @@
 </div>
 <!--<p class="subject">{{work?.subjects}}</p>-->
   <ul *ngIf="done" class="subject">
-    <li *ngFor="let recommendation of recommendationList">{{recommendation.title}}</li>
+    <li *ngFor="let recommendation of recommendationList">
+      <a [routerLink]="['book', recommendation.key]">{{recommendation.title}}</a>
+    </li>
   </ul>
 
 

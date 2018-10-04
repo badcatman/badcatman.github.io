@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { BookDataService } from '../../services/book-data.service';
 import { BookInterface } from '../../interfaces/book.interface';
 
@@ -14,7 +15,7 @@ export class ChoiceBookItemComponent implements OnInit {
   public img: number;
   public id: string;
 
-  constructor(private bookData: BookDataService, private router: Router) { }
+  constructor(private bookData: BookDataService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.img = this.bookItem['cover_i'];

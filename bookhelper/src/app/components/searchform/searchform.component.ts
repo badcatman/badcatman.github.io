@@ -18,7 +18,7 @@ export class SearchFormComponent implements OnInit {
     public searchForm: FormGroup;
     public books: BookInterface[];
     public titles: BookInterface[];
-    private done: boolean = false;
+    public done: boolean = false;
     private debounce: number = 400;
 
     constructor(private searchBook: SearchBookService) {
@@ -30,7 +30,8 @@ export class SearchFormComponent implements OnInit {
     }
     ngOnInit() {
       this.searchForm.controls['basicBook'].valueChanges
-        .pipe(debounceTime(this.debounce), distinctUntilChanged(),
+        .pipe(debounceTime(this.debounce),
+              distinctUntilChanged(),
               switchMap((response: string) => this.searchBook.searchTitles(response)),
               map((response: SearchTitleInterface): BookInterface[] => response['docs'])
         )
@@ -43,14 +44,13 @@ export class SearchFormComponent implements OnInit {
     }
 
     public submit() {
+      this.showHint(false);
       const title = this.searchForm.controls['basicBook'].value;
 
       this.searchRecommendation(title);
     }
 
     public searchRecommendation(title: string) {
-      this.showHint(false);
-
       this.searchForm.controls['basicBook'].setValue('');
       this.searchBook.searchBooks(title).subscribe((response) => this.books = response['docs']);
     }

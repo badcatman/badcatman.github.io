@@ -9,6 +9,7 @@ import { SearchTitleInterface } from '../interfaces/search.title.interface';
 import { SearchSubjectsInterface } from '../interfaces/search-subjects.interface';
 import { SubjectsWorkInterface } from '../interfaces/subjects-work.interface';
 import { SubjectInterface } from '../interfaces/subject.interface';
+import { SearchAuthorsWorksInterface } from '../interfaces/search.authors.works.interface';
 
 
 const httpOptions = {
@@ -24,8 +25,9 @@ export class SearchBookService {
     public search$: Observable<SearchTitleInterface>;
     public work$: Observable<WorkInterface>;
     public author$: Observable<AuthorInterface>;
+    public authorWorks$: Observable<SearchAuthorsWorksInterface>;
     public subjects$: Observable<SearchSubjectsInterface[]>;
-    public  references$: Observable<SubjectInterface>;
+    public references$: Observable<SubjectInterface>;
     // tslint:disable-next-line:no-inferrable-types
     private apiUrl: string = 'http://openlibrary.org';
 
@@ -73,5 +75,12 @@ export class SearchBookService {
       const searchUrl = `search.json?title=${title}&limit=3`;
 
       return this.http.get<SearchTitleInterface>(`${this.apiUrl}/${searchUrl}`);
+    }
+
+    public searchAuthorWorks(id_author: string): Observable<SearchAuthorsWorksInterface> {
+      const searchUrl = `authors/${id_author}/works.json?limit=1000`;
+
+      this.authorWorks$ = this.http.get<SearchAuthorsWorksInterface>(`${this.apiUrl}/${searchUrl}`);
+      return this.authorWorks$;
     }
 }

@@ -22,9 +22,12 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'search', component: SearchBooksComponent},
   { path: 'search/book/:id', redirectTo: 'book/:id'},
+  { path: 'search/author/:id_author', redirectTo: 'author/:id_author'},
   { path: 'book/:id', component: BookComponent},
   { path: 'book/:id/author/:id_author', redirectTo: 'author/:id_author'},
+  { path: 'book/:id/book/:id', redirectTo: 'book/:id'},
   { path: 'author/:id_author', component: AuthorComponent },
+  { path: 'author/:id_author/book/:id', redirectTo: 'book/:id'},
   { path: '**', component: NotFoundComponent }
 ];
 

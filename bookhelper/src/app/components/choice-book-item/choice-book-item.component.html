@@ -7,14 +7,18 @@
         </ng-template>
     </a>
     <div class="description">
-        <p class="book-title">{{ bookItem.title }}</p>
-        <p class="book-authors">{{ bookItem.author_name }}</p>
-    </div> 
+        <p class="book-title">
+          <a [routerLink]="['book', id]">{{ bookItem.title }}</a>
+        </p>
+        <p class="book-authors">
+          <a [routerLink]="['author', bookItem.author_key[0]]">{{ bookItem.author_name }}</a>
+        </p>
+    </div>
 </div>
 <!-- <div class="book">
     <img class="img" src="https://covers.openlibrary.org/w/id/8236263-M.jpg" alt="">
     <div class="description">
         <p class="book-title">Title 1: Hobbit, or There and Back Again</p>
         <p class="book-authors">J.R.R.Tolkien</p>
-    </div> 
+    </div>
 </div> -->

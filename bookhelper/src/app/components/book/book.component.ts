@@ -10,6 +10,7 @@ import { SearchSubjectsInterface } from '../../interfaces/search-subjects.interf
 import { SubjectsWorkInterface } from '../../interfaces/subjects-work.interface';
 import { SubjectInterface } from '../../interfaces/subject.interface';
 import { RecommendationInterface } from '../../interfaces/recommendation.interface';
+import { AuthorInterface } from '../../interfaces/author.interface';
 
 @Component({
   selector: 'app-book',
@@ -21,7 +22,9 @@ export class BookComponent implements OnInit, OnDestroy {
   public id_author: string;
   public book: BookInterface ;
   public work: WorkInterface;
+  public author: AuthorInterface;
   public src: string;
+  public cover: number;
   public subjects: string[];
   public id: string;
   public done: boolean;
@@ -60,15 +63,20 @@ export class BookComponent implements OnInit, OnDestroy {
     .pipe(switchMap((params) => this.search.searchWork(params['id'])))
     .subscribe((work: WorkInterface) => {
       this.work = work;
+      console.log('WORK: ', this.work);
       this.subjects = this.work.subjects;
+      this.id_author = this.work.authors[0].author['key'].slice(9);
+      this.cover = this.work['covers'][0];
+      this.src = `https://covers.openlibrary.org/w/id/${this.cover}-L.jpg`;
+      this.getAuthor(this.id_author);
     });
 
     this.bookData.getWork().pipe(take(1)).subscribe((book: BookInterface ) => {
       this.book = book;
-      console.log(this.book);
+      console.log('BOOK: ', this.book);
     });
-    this.src = `https://covers.openlibrary.org/w/id/${this.book['cover_i']}-L.jpg`;
-    this.id_author = this.book.author_key[0];
+    // this.src = `https://covers.openlibrary.org/w/id/${this.book['cover_i']}-L.jpg`;
+
   }
 
   click() {
@@ -81,6 +89,10 @@ export class BookComponent implements OnInit, OnDestroy {
     });
   }
 
+  public getAuthor(id: string) {
+    this.search.searchAuthor(this.id_author).subscribe((author: AuthorInterface) => this.author = author);
+  }
+
   public buildReferences(subject: Array<string>) {
     const subj = subject[0].toLowerCase().split(' ').join('_');
     this.search.searchReferences(subj)
@@ -88,12 +100,13 @@ export class BookComponent implements OnInit, OnDestroy {
         map((response: SubjectInterface) => response['works']),
         map((response: SubjectsWorkInterface[]) => response.map((elem) => {
             const arr = elem['subject'].filter((item) =>  this.subjects.indexOf(item) >= 0 );
-            return {key: elem['key'], subject: arr, rating: arr.length, authors: elem['authors'], title: elem['title']};
+            return {key: elem['key'].slice(7), subject: arr, rating: arr.length, authors: elem['authors'], title: elem['title']};
           })),
         map((response: RecommendationInterface[]) => response.map((item) => {
             if (item['authors'][0]['key'] === this.work['authors'][0]['author']['key']) {
               item.rating += 30;
               console.log(item.rating);
+              console.log(item.key);
             }
             return item;
           })))

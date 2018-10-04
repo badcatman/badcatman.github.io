@@ -12,7 +12,7 @@ export interface WorkInterface {
     last_modified: {type: string, value: string};
     authors?: {type: {}, author: {}}[];
     latest_revision: number;
-    excerpts?: {exerpt: string}[];
+    excerpts?: {excerpt: string}[];
     type: {key: string};
     subjects?: string[];
     revision: number;
