@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
-import { take, switchMap, filter, pluck, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { take, switchMap, pluck, map } from 'rxjs/operators';
 import { BookDataService } from '../../services/book-data.service';
 import { SearchBookService } from '../../services/searchbook.service';
 import { WorkInterface } from '../../interfaces/work.interface';
 import { BookInterface } from '../../interfaces/book.interface';
 import { SearchSubjectsInterface } from '../../interfaces/search-subjects.interface';
 import { SubjectsWorkInterface } from '../../interfaces/subjects-work.interface';
-import { SubjectInterface } from '../../interfaces/subject.interface';
+
 import { RecommendationInterface } from '../../interfaces/recommendation.interface';
 import { AuthorInterface } from '../../interfaces/author.interface';
 
@@ -28,7 +28,7 @@ export class BookComponent implements OnInit, OnDestroy {
   public subjects: string[];
   public id: string;
   public done: boolean;
-  public recommendationList: RecommendationInterface[];
+  public recommendationList: RecommendationInterface[] = [];
   public mainSubjects: string[] = [
     'History',
     'Biography',
@@ -68,7 +68,7 @@ export class BookComponent implements OnInit, OnDestroy {
       this.id_author = this.work.authors[0].author['key'].slice(9);
       this.cover = this.work['covers'][0];
       this.src = `https://covers.openlibrary.org/w/id/${this.cover}-L.jpg`;
-      this.getAuthor(this.id_author);
+      this.getAuthor();
     });
 
     this.bookData.getWork().pipe(take(1)).subscribe((book: BookInterface ) => {
@@ -82,25 +82,34 @@ export class BookComponent implements OnInit, OnDestroy {
   click() {
     this.search.getSubjects(this.work.key.slice(7))
     .pipe(
-      map((arr: SearchSubjectsInterface[]) => arr[0]['subjects'].filter((elem) =>  this.mainSubjects.indexOf(elem) >= 0 )))
-    .subscribe((subject: Array<string>) => {
-      subject.push('Accessible book');
+      map((arr: SearchSubjectsInterface[]) => arr[0]),
+      pluck('subjects'),
+      map((arr: string[]) => {
+        // const msubject = this.mainSubjects;
+        return arr.find((elem) => this.mainSubjects.indexOf(elem) >= 0);
+      })
+    )
+      // map((arr: SearchSubjectsInterface[]) => arr[0]['subjects'].filter((elem) =>  this.mainSubjects.indexOf(elem) >= 0 )))
+    .subscribe((subject: string = 'Accessible book') => {
+      // subject.push('Accessible book');
       this.buildReferences(subject);
     });
   }
 
-  public getAuthor(id: string) {
+  public getAuthor() {
     this.search.searchAuthor(this.id_author).subscribe((author: AuthorInterface) => this.author = author);
   }
 
-  public buildReferences(subject: Array<string>) {
-    const subj = subject[0].toLowerCase().split(' ').join('_');
-    this.search.searchReferences(subj)
+  public buildReferences(subj: string) {
+    const subjct = subj.toLowerCase().split(' ').join('_');
+    this.search.searchReferences(subjct)
       .pipe(
-        map((response: SubjectInterface) => response['works']),
-        map((response: SubjectsWorkInterface[]) => response.map((elem) => {
-            const arr = elem['subject'].filter((item) =>  this.subjects.indexOf(item) >= 0 );
-            return {key: elem['key'].slice(7), subject: arr, rating: arr.length, authors: elem['authors'], title: elem['title']};
+        // map((response: SubjectInterface) => response['works']),
+        pluck('works'),
+        map((response: SubjectsWorkInterface[]) => response.map(({key, subject, authors, title}) => {
+            const arr = subject.filter((item) =>  this.subjects.indexOf(item) >= 0 );
+
+            return {key: key.slice(7), subject: arr, rating: arr.length, authors, title};
           })),
         map((response: RecommendationInterface[]) => response.map((item) => {
             if (item['authors'][0]['key'] === this.work['authors'][0]['author']['key']) {
@@ -108,25 +117,36 @@ export class BookComponent implements OnInit, OnDestroy {
               console.log(item.rating);
               console.log(item.key);
             }
+
             return item;
           })))
       .subscribe((response: RecommendationInterface[]) => {
-        this.recommendationList = this.sortRecommenadation(response);
+        this.recommendationList = this.sortRecommendation(response).slice(0, 10);
         console.log(this.recommendationList);
         this.done = true;
       });
   }
 
-  public sortRecommenadation(list: Array<RecommendationInterface>) {
-    return list.sort((a: any, b: any) => {
-      if (a['rating'] < b['rating']) {
-        return 1;
-      } else if (a['rating'] > b['rating']) {
-        return -1;
-      } else {
-        return 0;
-      }
+  public sortRecommendation(list: Array<RecommendationInterface>) {
+    return list.sort(({rating: ratingA}, {rating: ratingB}) => {
+      return ratingA < ratingB ? 1 : -1;
     });
+  }
+
+  // public sortRecommendation(list: Array<RecommendationInterface>) {
+  //   return list.sort((a: any, b: any) => {
+  //     if (a['rating'] < b['rating']) {
+  //       return 1;
+  //     } else if (a['rating'] > b['rating']) {
+  //       return -1;
+  //     } else {
+  //       return 0;
+  //     }
+  //   });
+  // }
+
+  public showRecommendation(state) {
+    this.done = state;
   }
 
   ngOnDestroy() {

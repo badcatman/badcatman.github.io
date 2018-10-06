@@ -36,7 +36,7 @@ export class AuthorComponent implements OnInit, OnDestroy {
       map((response: SearchAuthorsWorksInterface) => response['entries']),
       map((response: AuthorsWorkInterface[]) => response.filter((item) =>  item['subjects']))
     )
-      .subscribe((response: AuthorsWorkInterface[]) => this.works = this.sortWorks(response));
+      .subscribe((response: AuthorsWorkInterface[]) => this.works = this.sortWorks(response).slice(0, 10));
   }
 
   public sortWorks(list: AuthorsWorkInterface[]) {
