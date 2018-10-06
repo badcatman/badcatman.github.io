@@ -23,7 +23,7 @@
 <!--<p class="subject">{{work?.subjects}}</p>-->
   <ul *ngIf="done" class="subject">
     <li *ngFor="let recommendation of recommendationList">
-      <a [routerLink]="['book', recommendation.key]">{{recommendation.title}}</a>
+      <a [routerLink]="['book', recommendation.key]" (click)="showRecommendation(false)">{{recommendation.title}}</a>
     </li>
   </ul>
 

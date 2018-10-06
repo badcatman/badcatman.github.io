@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { SearchBookService } from '../../services/searchbook.service';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, map, filter } from 'rxjs/operators';
 import { SearchTitleInterface } from '../../interfaces/search.title.interface';
 import { BookInterface } from '../../interfaces/book.interface';
 
@@ -32,7 +32,8 @@ export class SearchFormComponent implements OnInit {
       this.searchForm.controls['basicBook'].valueChanges
         .pipe(debounceTime(this.debounce),
               distinctUntilChanged(),
-              switchMap((response: string) => this.searchBook.searchTitles(response)),
+              filter((title) => title),
+              switchMap((title: string) => this.searchBook.searchTitles(title)),
               map((response: SearchTitleInterface): BookInterface[] => response['docs'])
         )
         .subscribe((response: BookInterface[]): void => {
@@ -51,8 +52,9 @@ export class SearchFormComponent implements OnInit {
     }
 
     public searchRecommendation(title: string) {
-      this.searchForm.controls['basicBook'].setValue('');
+      this.searchForm.controls['basicBook'].setValue(title);
       this.searchBook.searchBooks(title).subscribe((response) => this.books = response['docs']);
+      this.showHint(false);
     }
 
     public showHint(state: boolean, event?) {
