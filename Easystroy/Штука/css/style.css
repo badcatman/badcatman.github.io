@@ -1,0 +1,145 @@
+@font-face {
+    font-family: Montserrat; /* Имя шрифта */
+    src: url("../fonts/Montserrat-ExtraBold.otf") format("truetype"); 
+   }
+@font-face {
+    font-family: MontserratRegular; /* Имя шрифта */
+    src: url("../fonts/Montserrat-Regular.otf") format("truetype"); 
+   }
+@font-face {
+    font-family: MontserratMedium; /* Имя шрифта */
+    src: url("../fonts/Montserrat-Medium.otf") format("truetype"); 
+   }
+@font-face {
+    font-family: MerriweatherRegular; /* Имя шрифта */
+    src: url("../fonts/Merriweather-Regular.otf") format("truetype"); 
+   }
+@font-face {
+    font-family: MerriweatherBold; /* Имя шрифта */
+    src: url("../fonts/Merriweather-Bold.otf") format("truetype"); 
+   }
+@font-face {
+    font-family: RalewayRegular; /* Имя шрифта */
+    src: url("../fonts/Raleway-Regular.ttf") format("truetype"); 
+   }
+
+.header {
+	padding: 20px 0;
+	background-color: #eff0f2;
+}
+
+.company-name, .company-phone {
+	font-size: 1.4rem;
+	font-family: Montserrat;
+	padding-top: 108px;
+
+	font-weight: 400;
+	color: #505050;
+}
+
+.name {
+	text-align: left;
+}
+
+.phone {
+	text-align: right;
+}
+
+.icon {
+	font-size: 2.1rem;
+}
+
+.main {
+	background-image: url(../images/1.jpg);
+	color: #bbb8b9;
+	font-family: RalewayRegular;
+	width: 100%;
+	background-position-x: center;
+    background-position-y: top;
+    background-size: cover;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-size: cover;
+}
+
+.gradient {
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+	width: 100%;
+	padding: 90px 40px 90px 40px;
+}
+
+.headline, .subtitle {
+	text-align: center;
+	color: #bbb8b9;
+}
+
+.headline {
+	font-size: 2.5rem;
+	padding: 100px 50px 20px 50px;
+	font-weight: 400;
+	font-family: Montserrat;
+}
+
+.subtitle {
+	padding: 20px 0 130px 0;
+	font-size: 1.6rem;
+
+	font-family: MontserratMedium;
+}
+
+.subtitle-text {
+	margin-bottom: 0.3rem;
+}
+
+.photo {
+	padding: 20px 0 50px 0;
+	background-color: #eff0f2;
+}
+
+.photo-title {
+	font-size: 1.7rem;
+	font-family: Montserrat;
+	padding: 50px;
+	text-align: center;
+	font-weight: 400;
+	color: #505050;
+}
+
+img {
+	height: auto; 
+    width: 100%;
+}
+
+.footer {
+	background-color: #262b2e;
+	padding: 30px 40px;
+	color: #bbb8b9;
+	font-family: RalewayRegular;
+}
+.footer .company-name, .footer .company-phone {
+	color: #bbb8b9;
+	font-size: 1.5rem;
+}
+
+.footer_text {
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.social {
+	padding: 8px 10px 0px 10px;
+}
+
+#last_text {
+	margin-top: 20px;
+	letter-spacing: 0.013em;
+}
+
+input::-moz-placeholder { color: white; }
+input::-webkit-input-placeholder { color: white; }
+textarea::-moz-placeholder { color: white; }
+textarea::-webkit-input-placeholder { color: white; }
