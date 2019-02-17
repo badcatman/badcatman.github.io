@@ -256,3 +256,13 @@ input::-moz-placeholder { color: white; }
 input::-webkit-input-placeholder { color: white; }
 textarea::-moz-placeholder { color: white; }
 textarea::-webkit-input-placeholder { color: white; }
+
+@media (min-width: 576px) { 
+	.header .container, .main .container, .us .container, .stages .container, .photo .container, .footer .container {
+		width: 100%;
+		padding-right: 15px;
+		padding-left: 15px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
