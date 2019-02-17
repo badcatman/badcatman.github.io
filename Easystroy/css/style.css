@@ -50,7 +50,7 @@
 }
 
 .main {
-	background-image: url(../images/1.jpg);
+	background-image: url(../images/main_back.jpg);
 	color: #bbb8b9;
 	font-family: RalewayRegular;
 	width: 100%;
@@ -114,9 +114,108 @@ img {
     width: 100%;
 }
 
+.us .container {
+	padding-bottom: 40px;
+}
+
+.reason {
+	font-family: MontserratMedium;
+	font-size: 1rem;
+	font-weight: 400;
+	color: #505050;
+}
+
+.line-bottom {
+    width: 100%;
+    height: 7px;
+	background: #f1f1f1;
+	box-shadow: inset 0px 0px 4px 1px rgba(0,0,0,0.08);
+}
+
+.us_point {
+	text-align: center;
+}
+
+.us_icon {
+	width: 100%;
+	height: auto;
+	max-width: 130px;
+	padding-bottom: 10px;
+}
+
+.stages {
+	background-image: url(../images/stages_back.jpeg);
+	color: #bbb8b9;
+	font-family: RalewayRegular;
+	width: 100%;
+	background-position-x: center;
+    background-position-y: top;
+    background-size: cover;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-size: cover;
+}
+
+.stages .gradient {
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+	width: 100%;
+	padding: 50px 40px;
+}
+
+.stages .headline {
+	font-size: 1.7rem;
+	padding: 20px 50px 50px 50px;
+	font-weight: 400;
+	font-family: Montserrat;
+}
+
+.stages .subtitle {
+	padding: 20px 0;
+	font-size: 1.6rem;
+
+	font-family: MontserratMedium;
+}
+
+.stages .subtitle-text {
+	margin-bottom: 0.3rem;
+}
+
+.stages_text {
+	font-family: MontserratMedium;
+	font-size: 0.9rem;
+	font-weight: 400;
+	color: #bbb8b9;
+}
+
+.stages_header {
+	font-family: MontserratMedium;
+	font-size: 1rem;
+	font-weight: 600;
+	/* color: #bbb8b9; */
+	/* color: #71f6eb; */
+	color: #4fb8fe;
+	padding-bottom: 10px;
+}
+
+.stages .us_point {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.stage_icon {
+	width: 100%;
+	height: auto;
+	max-width: 100px;
+	padding-bottom: 10px;
+}
+
 .footer {
 	background-color: #262b2e;
-	padding: 30px 40px;
+	padding: 30px 40px 10px 40px;
 	color: #bbb8b9;
 	font-family: RalewayRegular;
 }
@@ -137,6 +236,20 @@ img {
 #last_text {
 	margin-top: 20px;
 	letter-spacing: 0.013em;
+}
+
+.author_text {
+	margin-bottom: 0px;
+	text-align: right;
+	font-size: 1rem;
+}
+
+.blue {
+	color: #4fb8fe;
+}
+
+a .blue:hover {
+	color: #016bb2;
 }
 
 input::-moz-placeholder { color: white; }
